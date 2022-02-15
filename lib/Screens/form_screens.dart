@@ -10,7 +10,7 @@ class FormScreens extends StatelessWidget {
   final String photo;
   final String details;
   final String datetime;
-
+  final String id;
   const FormScreens({
     Key key,
     this.dormitoryX,
@@ -19,13 +19,14 @@ class FormScreens extends StatelessWidget {
     this.photo,
     this.details,
     this.datetime,
+    this.id
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ยืนยันรายการแจ้งซ่อม'),
+        title: Text('ยืนยันรายการแจ้งซ่อม ss${id}'),
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.close),

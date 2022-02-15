@@ -8,6 +8,8 @@ import 'package:project_app/Screens/home/home_screen.dart';
 
 import 'package:project_app/constants.dart';
 import 'package:project_app/login/LoginPage.dart';
+import 'package:project_app/provider/HomePageProvider.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   // await Firebase.initializeApp();
@@ -29,40 +31,47 @@ class _AppState extends State<App> {
     // final _init = Firebase.initializeApp();
     final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
-    return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: kBackgroundColor,
-        primaryColor: kPrimaryColor,
-        textTheme: GoogleFonts.kanitTextTheme(
-          Theme.of(context).textTheme.apply(bodyColor: kTextColor),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => HomePageProvider()),
+        
+        
+        ],
+      child: MaterialApp(
+        theme: ThemeData(
+          scaffoldBackgroundColor: kBackgroundColor,
+          primaryColor: kPrimaryColor,
+          textTheme: GoogleFonts.kanitTextTheme(
+            Theme.of(context).textTheme.apply(bodyColor: kTextColor),
+          ),
         ),
-      ),
-      debugShowCheckedModeBanner: false,
-      // LoginPage()
-      home: FutureBuilder(
-        // Initialize FlutterFire:
-        future: _initialization,
-        builder: (context, snapshot) {
-          // Check for errors
-          if (snapshot.hasError) {
-            return Scaffold();
-          }
+        debugShowCheckedModeBanner: false,
+        // LoginPage()
+        home: FutureBuilder(
+          // Initialize FlutterFire:
+          future: _initialization,
+          builder: (context, snapshot) {
+            // Check for errors
+            if (snapshot.hasError) {
+              return Scaffold();
+            }
 
-          // Once complete, show your application
-          if (snapshot.connectionState == ConnectionState.done) {
-            return LoginPage();
-          }
+            // Once complete, show your application
+            if (snapshot.connectionState == ConnectionState.done) {
+              return HomeScreen();
+            }
 
-          // Otherwise, show something whilst waiting for initialization to complete
-          return Scaffold(
-            body: Center(
-              child: SpinKitDoubleBounce(
-                color: Colors.blue,
-                size: 20,
+            // Otherwise, show something whilst waiting for initialization to complete
+            return Scaffold(
+              body: Center(
+                child: SpinKitDoubleBounce(
+                  color: Colors.blue,
+                  size: 20,
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

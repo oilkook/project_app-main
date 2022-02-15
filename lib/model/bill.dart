@@ -1,4 +1,6 @@
 class Bill {
+
+  String id;
   String informationDate;
   String emailaddress;
   String repairname;
@@ -15,7 +17,9 @@ class Bill {
   String msg;
 
   Bill(
-      {this.informationDate,
+      {
+        this.id,
+        this.informationDate,
       this.emailaddress,
       this.repairname,
       this.roomnumber,
@@ -31,20 +35,21 @@ class Bill {
       this.msg});
 
   Bill.fromJson(Map<String, dynamic> json) {
-    informationDate = json['informationDate'];
-    emailaddress = json['emailaddress'];
-    repairname = json['repairname'];
+    id = json['id'].toString();
+    informationDate = json['informationDate'].toString();
+    emailaddress = json['emailaddress'].toString();
+    repairname = json['repairname'].toString();
     roomnumber = json['roomnumber'].toString();
-    dormitoryX = json['dormitoryX'];
-    phonenumber = json['phonenumber'];
-    lineID = json['lineID'];
-    date = json['Date'];
-    status = json['status'];
-    time = json['time'];
-    list = json['list'];
-    photo = json['photo'];
-    details = json['details'];
-    msg = json['msg'];
+    dormitoryX = json['dormitoryX'].toString();
+    phonenumber = json['phonenumber'].toString();
+    lineID = json['lineID'].toString();
+    date = json['Date'].toString();
+    status = json['status'].toString();
+    time = json['time'].toString();
+    list = json['list'].toString();
+    photo = json['photo'].toString();
+    details = json['details'].toString();
+    msg = json['msg'].toString();
   }
 
   Map<String, dynamic> toJson() {

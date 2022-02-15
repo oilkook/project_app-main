@@ -254,6 +254,7 @@ class RepairMore extends StatelessWidget {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                           return FormScreens(
+                            id: "${data.id}",
                             dormitoryX: "${data.dormitoryX}",
                             roomnumber: "${data.roomnumber}",
                             list: "${data.list}",

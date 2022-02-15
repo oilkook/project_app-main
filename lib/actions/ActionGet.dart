@@ -11,11 +11,11 @@ class ActionGet {
         // print('${response.data}');
         final List<Bill> temp = [];
 
-        response.data.forEach((item) => temp.add(Bill.fromJson(item)));
-
+        // response.data.forEach((item) => temp.add(Bill.fromJson(item)));
+        // print(response.data);
         // print(" temp $temp");
         // print(temp.runtimeType);
-        return temp;
+        return List.generate(response.data.length, (index) => Bill.fromJson(response.data[index]));
       } else {
         print('Data is Null');
       }
