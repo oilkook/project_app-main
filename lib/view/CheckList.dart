@@ -4,7 +4,10 @@ import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:project_app/Homepage/homepage.dart';
 import 'package:project_app/Screens/home/home_screen.dart';
+import 'package:project_app/actions/ActionSheet.dart';
+import 'package:project_app/provider/HomePageProvider.dart';
 import 'package:project_app/view/sent_email.dart';
+import 'package:provider/provider.dart';
 
 class CheckList extends StatelessWidget {
   final String roomnumber;
@@ -15,6 +18,7 @@ class CheckList extends StatelessWidget {
   final String datetime;
   final String line;
   final String name;
+  final String id;
 
   const CheckList({
     Key key,
@@ -26,6 +30,7 @@ class CheckList extends StatelessWidget {
     this.phonenumber,
     this.line,
     this.name,
+    this.id,
   }) : super(key: key);
 
   @override
@@ -33,7 +38,7 @@ class CheckList extends StatelessWidget {
     return GestureDetector(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('แจ้งเข้าซ่อมเสร็จ'),
+          title: Text('แจ้งเข้าซ่อมเสร็จ ${id}'),
           leading: IconButton(
             color: Colors.white,
             icon: Icon(Icons.close),
@@ -223,7 +228,7 @@ class CheckList extends StatelessWidget {
                     builder: (context) {
                       return CupertinoAlertDialog(
                         title: Text(
-                          "ยืนยันการซ่อมเสร็จ",
+                          "ยืนยันการซ่อมเสร็จ ${id}",
                         ),
                         actions: [
                           CupertinoDialogAction(
@@ -232,8 +237,14 @@ class CheckList extends StatelessWidget {
                           ),
                           CupertinoDialogAction(
                             child: Text("ยืนยัน"),
-                            onPressed: () {
+                            onPressed: () async{
                               print('ซ่อมเสร็จแล้ว');
+                              await ActionSheet.editStatus(id: id, status: '2');
+                              final provider = Provider.of<HomePageProvider>(
+                                  context,
+                                  listen: false);
+                              provider.fetchRequestStatus();
+                              provider.fetchConfirmStatus();
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
                                 return HomeScreen();

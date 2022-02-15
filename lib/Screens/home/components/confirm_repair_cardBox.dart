@@ -85,6 +85,7 @@ class ConfirmRepairCard extends StatelessWidget {
           print('object');
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return CheckList(
+              id: "${data.id}",
               email: "${data.emailaddress}",
               name: "${data.repairname}",
               dormitoryX: "${data.dormitoryX}",

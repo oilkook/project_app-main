@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_app/Screens/details/components/body.dart';
 import 'package:project_app/Screens/home/home_screen.dart';
+import 'package:project_app/actions/ActionSheet.dart';
+import 'package:project_app/provider/HomePageProvider.dart';
+import 'package:provider/provider.dart';
 
 class DetailsConfirmScreen extends StatelessWidget {
   final String roomnumber;
@@ -12,6 +15,7 @@ class DetailsConfirmScreen extends StatelessWidget {
   final String datetime;
   final String line;
   final String name;
+  final String id;
 
   const DetailsConfirmScreen({
     Key key,
@@ -23,13 +27,14 @@ class DetailsConfirmScreen extends StatelessWidget {
     this.phonenumber,
     this.line,
     this.name,
+    this.id,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ส่ง Email แจ้งเข้าซ่อมเสร็จ'),
+        title: Text('ส่งแจ้งเข้าซ่อมเสร็จ ${id}'),
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.arrow_back_rounded),
@@ -219,7 +224,7 @@ class DetailsConfirmScreen extends StatelessWidget {
                   builder: (context) {
                     return CupertinoAlertDialog(
                       title: Text(
-                        "ยืนยันการส่ง Email",
+                        "ยืนยันการซ่อมเสร็จ ${id}",
                       ),
                       actions: [
                         CupertinoDialogAction(
@@ -228,8 +233,14 @@ class DetailsConfirmScreen extends StatelessWidget {
                         ),
                         CupertinoDialogAction(
                           child: Text("ส่ง"),
-                          onPressed: () {
-                            print('ส่งอีเมลแล้ว');
+                          onPressed: () async{
+                            print('ส่งแล้ว');
+                            await ActionSheet.editStatus(id: id, status: '2');
+                              final provider = Provider.of<HomePageProvider>(
+                                  context,
+                                  listen: false);
+                              provider.fetchRequestStatus();
+                              provider.fetchConfirmStatus();
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return HomeScreen();
