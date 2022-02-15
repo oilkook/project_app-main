@@ -5,6 +5,7 @@ import 'package:mailer/smtp_server.dart';
 import 'package:project_app/Homepage/homepage.dart';
 import 'package:project_app/Screens/home/home_screen.dart';
 import 'package:project_app/actions/ActionSheet.dart';
+import 'package:project_app/constants.dart';
 import 'package:project_app/provider/HomePageProvider.dart';
 import 'package:project_app/view/sent_email.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,7 @@ class CheckList extends StatelessWidget {
     return GestureDetector(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: kPrimaryColor,
           title: Text('แจ้งเข้าซ่อมเสร็จ ${id}'),
           leading: IconButton(
             color: Colors.white,

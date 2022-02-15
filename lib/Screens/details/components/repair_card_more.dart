@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:project_app/Screens/details/details_screens.dart';
 import 'package:project_app/Screens/form_screens.dart';
 import 'package:project_app/actions/ActionGet.dart';
+import 'package:project_app/constants.dart';
 import 'package:project_app/model/bill.dart';
 import 'package:project_app/notifications/notifications.dart';
 
@@ -51,6 +52,7 @@ class _MoreState extends State<MoreRepair> {
     return Scaffold(
       backgroundColor: Colors.orange[100],
       appBar: AppBar(
+        backgroundColor:  kPrimaryColor,
         title: Text('ใบแจ้งซ่อมทั้งหมด'),
         leading: IconButton(
           color: Colors.white,
@@ -248,6 +250,7 @@ class RepairMore extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(primary: kPrimaryColor,),
                       onPressed: () {
                         print('object');
 

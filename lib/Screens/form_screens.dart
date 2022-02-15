@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_app/Homepage/homepage.dart';
 import 'package:project_app/Screens/home/home_screen.dart';
+import 'package:project_app/constants.dart';
 
 class FormScreens extends StatelessWidget {
   final String roomnumber;
@@ -26,7 +27,8 @@ class FormScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ยืนยันรายการแจ้งซ่อม ss${id}'),
+        backgroundColor: kPrimaryColor,
+        title: Text('ยืนยันรายการแจ้งซ่อม ${id}'),
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.close),
@@ -129,7 +131,7 @@ class FormScreens extends StatelessWidget {
                   builder: (context) {
                     return CupertinoAlertDialog(
                       title: Text(
-                        "ยืนยันการเข้าซ่อม",
+                        "ยืนยันการเข้าซ่อม ${id}",
                       ),
                       actions: [
                         CupertinoDialogAction(

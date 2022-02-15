@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_app/Screens/home/home_screen.dart';
 import 'package:project_app/actions/ActionSheet.dart';
+import 'package:project_app/constants.dart';
 import 'package:project_app/provider/HomePageProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,7 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: kPrimaryColor,
         title: Text('ยืนยันรายการแจ้งซ่อม ${id}'),
         leading: IconButton(
           color: Colors.white,

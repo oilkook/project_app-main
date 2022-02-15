@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_app/Screens/home/components/body.dart';
 import 'package:project_app/actions/ActionSheet.dart';
+import 'package:project_app/constants.dart';
 import 'package:project_app/login/LoginPage.dart';
 import 'package:project_app/provider/HomePageProvider.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.orange[100],
 
         appBar: AppBar(
+          backgroundColor:  kPrimaryColor,
           elevation: 0,
           leading: IconButton(
             icon: Icon(Icons.notifications_active_outlined, color: Colors.white),

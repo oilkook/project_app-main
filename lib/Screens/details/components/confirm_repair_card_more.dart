@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:project_app/Screens/details/details_confirm_screen.dart';
 import 'package:project_app/actions/ActionGet.dart';
+import 'package:project_app/constants.dart';
 import 'package:project_app/model/bill.dart';
 import 'package:project_app/notifications/notifications.dart';
 import 'package:project_app/view/CheckList.dart';
@@ -51,6 +52,7 @@ class _MoreConfirmState extends State<MoreConfirm> {
     return Scaffold(
       backgroundColor: Colors.orange[100],
       appBar: AppBar(
+        backgroundColor: kPrimaryColor,
         title: Text('ใบแจ้งซ่อมที่ยืนยันแล้วทั้งหมด'),
         leading: IconButton(
           color: Colors.white,
@@ -248,11 +250,13 @@ class ConfirmMore extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(primary: kPrimaryColor,),
                         onPressed: () {
                           print('object');
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return CheckList(
+                              id: "${data.id}",
                               email: "${data.emailaddress}",
                               name: "${data.repairname}",
                               dormitoryX: "${data.dormitoryX}",

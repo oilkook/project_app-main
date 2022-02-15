@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_app/Screens/details/components/body.dart';
 import 'package:project_app/Screens/home/home_screen.dart';
 import 'package:project_app/actions/ActionSheet.dart';
+import 'package:project_app/constants.dart';
 import 'package:project_app/provider/HomePageProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +35,7 @@ class DetailsConfirmScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: kPrimaryColor,
         title: Text('ส่งแจ้งเข้าซ่อมเสร็จ ${id}'),
         leading: IconButton(
           color: Colors.white,
