@@ -41,31 +41,31 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: Colors.orange[100],
 
-        // appBar: AppBar(
-        //   elevation: 0,
-        //   leading: IconButton(
-        //     icon: Icon(Icons.notifications_active_outlined, color: Colors.white),
-        //     onPressed: () {
-        //       print('Notifications');
-        //     },
-        //   ),
+        appBar: AppBar(
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.notifications_active_outlined, color: Colors.white),
+            onPressed: () {
+              print('Notifications');
+            },
+          ),
 
-        //   actions: [
-        //     IconButton(
-        //       icon: Icon(Icons.logout_rounded, color: Colors.white),
-        //       tooltip: 'Log Out',
-        //       onPressed: () {
-        //         Navigator.push(
-        //           context,
-        //           MaterialPageRoute(
-        //             builder: (context) => LoginPage(),
-        //           ),
-        //         );
-        //         print('Logout');
-        //       },
-        //     ),
-        //   ],
-        // ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.logout_rounded, color: Colors.white),
+              tooltip: 'Log Out',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ),
+                );
+                print('Logout');
+              },
+            ),
+          ],
+        ),
         // body: Body(),
 
         body: 
