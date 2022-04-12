@@ -1,22 +1,106 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:project_app/providers/task_provider.dart';
+import 'package:project_app/screens/home_scr/bill_confirmation_section.dart';
+import 'package:project_app/screens/home_scr/reports_section.dart';
 import 'package:project_app/screens/login_scr.dart';
+import 'package:project_app/utils/api.dart';
+
 import 'package:project_app/utils/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({ Key key }) : super(key: key);
+  const HomeScreen({Key key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  RefreshController refreshController = RefreshController();
+  bool isLoad = true;
+
+  initialAction() async {
+    final provider = Provider.of<TaskProvider>(context, listen: false);
+    await provider.loadTask();
+    setState(() {
+      isLoad = false;
+    });
+  }
+
+  onRefresh() async {
+    setState(() {
+      isLoad = true;
+    });
+    final provider = Provider.of<TaskProvider>(context, listen: false);
+    await provider.loadTask();
+    setState(() {
+      isLoad = false;
+    });
+
+    refreshController.refreshCompleted();
+  }
+
+  @override
+  void initState() {
+    initialAction();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text('Home'),),
-      body: ElevatedButton(onPressed: () {
-        Auth.signOut(context, LoginScreen());
-      } , child: Text("Sign Out"),),
+      appBar: AppBar(
+        elevation: 0,
+        title: Row(children: [
+          Badge(
+            badgeContent: Text('3', style: TextStyle(color: Colors.white)),
+            child: Icon(Icons.notifications),
+          ),
+          Spacer(),
+          IconButton(
+              onPressed: () {
+                Auth.signOut(context, LoginScreen());
+              },
+              icon: Icon(Icons.logout))
+        ]),
+      ),
+      body: SmartRefresher(
+        controller: refreshController,
+        onRefresh: onRefresh,
+        child: taskSection(size),
+      ),
+    );
+  }
+
+  ListView taskSection(Size size) {
+    return ListView(
+      children: [
+        AppBar(
+          elevation: 0,
+          toolbarHeight: size.height / 6,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30))),
+          title: Row(
+            children: [
+              Expanded(child: Text('Repair Service')),
+              Image.asset(
+                'assets/images/repair_icon.png',
+                width: size.height / 10,
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        ReportSection(isLoad: isLoad),
+        BillConfirmationSection(isLoad: isLoad),
+      ],
     );
   }
 }
