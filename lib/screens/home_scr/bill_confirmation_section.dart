@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:project_app/components/task_card.dart';
+import 'package:project_app/configs/global.dart';
+import 'package:project_app/providers/task_provider.dart';
+import 'package:project_app/screens/home_scr/view_more.dart';
+import 'package:provider/provider.dart';
 
 class BillConfirmationSection extends StatefulWidget {
   final isLoad;
@@ -16,48 +20,59 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height * 0.4,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text('Confirm'),
-              ),
-              ElevatedButton(
-                
-                style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: Colors.orangeAccent[700],
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30))),
-                onPressed: widget.isLoad ? null : () {},
-                child: Text('More'),
-              )
-            ],
-          ),
-          !widget.isLoad
-              ? Flexible(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return TaskCard(
-                          date: "1/1/3",
-                          time: "14:30",
-                          name: "task ${index + 1}",
-                          room: "10$index");
-                    },
-                  ),
+    return Consumer<TaskProvider>(builder: (context, provider, child) {
+      return Container(
+        height: size.height * 0.4,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text('Confirm', style: sectionHeader),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      primary: Colors.orangeAccent[700],
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30))),
+                  onPressed: widget.isLoad
+                      ? null
+                      : () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ViewMore(
+                                    title: "Confirmed", type: 'confirmed'),
+                              ));
+                        },
+                  child: Text('More'),
                 )
-              : Flexible(
-                  child: Container(
-                      child: SpinKitDoubleBounce(color: Colors.orange)),
-                )
-        ],
-      ),
-    );
+              ],
+            ),
+            !widget.isLoad
+                ? Flexible(
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        return TaskCard(
+                          date: provider.confirmed[index].date,
+                          time: provider.confirmed[index].time,
+                          name: provider.confirmed[index].repairname,
+                          room: provider.confirmed[index].roomnumber,
+                        );
+                      },
+                    ),
+                  )
+                : Flexible(
+                    child: Container(
+                        child: SpinKitDoubleBounce(color: Colors.orange)),
+                  )
+          ],
+        ),
+      );
+    });
   }
 }

@@ -4,18 +4,28 @@ import 'package:project_app/utils/api.dart';
 
 class TaskProvider extends ChangeNotifier {
   TaskProvider();
-  List<RepairRequest> repairTasks = [];
-   Future<bool> loadTask() async {
-     print('[TaskProvider] : Load Task');
-    final result = await Api.getOrderRequest();
-    this.repairTasks = result;
-    notifyListeners();
-    print('[TaskProvider] : Load Task Completed');
-    return true;
-  }
+  List<RepairRequest> reported = [];
+  List<RepairRequest> confirmed = [];
+  List<RepairRequest> finished = [];
 
-  List<RepairRequest> getTaskByMsg(int msg) {
-    final results = repairTasks.where((task) => task.msg == msg.toString());
-    return results;
+  Future<bool> loadTask() async {
+    print('[TaskProvider] : Load Task');
+    try {
+      final List<RepairRequest> result = await Api.getOrderRequest();
+      this.reported = result.where((task) => task.msg == "0").toList();
+      this.confirmed = result.where((task) => task.msg == "1").toList();
+      this.finished = result.where((task) => task.msg == "2").toList();
+      notifyListeners();
+      print('[TaskProvider] : Load Completed');
+      print('[TaskProvider] : Reported = ${this.reported.length}');
+      print('[TaskProvider] : Comfirmed = ${this.confirmed.length}');
+      print('[TaskProvider] : Finish = ${this.finished.length}');
+
+      return true;
+    } catch (err) {
+      print('[TaskProvider] : Load Failed');
+      print(err);
+      return false;
+    }
   }
 }

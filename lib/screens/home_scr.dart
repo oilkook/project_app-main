@@ -1,11 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:project_app/configs/global.dart';
 import 'package:project_app/providers/task_provider.dart';
 import 'package:project_app/screens/home_scr/bill_confirmation_section.dart';
+import 'package:project_app/screens/home_scr/finished_section.dart';
 import 'package:project_app/screens/home_scr/reports_section.dart';
 import 'package:project_app/screens/login_scr.dart';
-import 'package:project_app/utils/api.dart';
-
 import 'package:project_app/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -38,7 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       isLoad = false;
     });
-
     refreshController.refreshCompleted();
   }
 
@@ -49,10 +48,18 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void dispose() {
+    refreshController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: primary_background_color,
       appBar: AppBar(
+        backgroundColor: primary_appbar_color,
         elevation: 0,
         title: Row(children: [
           Badge(
@@ -79,6 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return ListView(
       children: [
         AppBar(
+          backgroundColor: primary_appbar_color,
           elevation: 0,
           toolbarHeight: size.height / 6,
           shape: RoundedRectangleBorder(
@@ -100,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         ReportSection(isLoad: isLoad),
         BillConfirmationSection(isLoad: isLoad),
+        FinishedSection(isLoad: isLoad),
       ],
     );
   }

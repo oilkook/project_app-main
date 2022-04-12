@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
-const primary_background_color = Color(0xFFfaba61);
+const primary_appbar_color = Color(0xFF262335);
+const primary_background_color = Color(0xFF503C52);
+const white_text = Color.fromARGB(255, 255, 255, 255);
+const darken_text = Color(0xFF1f1f1f);
+const sectionHeader = TextStyle(
+    fontSize: 18,
+    color: white_text,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.65);
+
 const String base_url =
     "https://script.google.com/macros/s/AKfycbzaqxvp0gFDGS8_GlOTpyryPIzx4vT4GTx9fDEY37Dg2bGDpIA/exec";
 const credentials = r'''
