@@ -6,6 +6,8 @@ import 'package:project_app/providers/task_provider.dart';
 import 'package:project_app/screens/home_scr/view_more.dart';
 import 'package:provider/provider.dart';
 
+import 'view_task_details.dart';
+
 class FinishedSection extends StatefulWidget {
   final bool isLoad;
   const FinishedSection({Key key, this.isLoad = true}) : super(key: key);
@@ -60,10 +62,17 @@ class _FinishedSectionState extends State<FinishedSection> {
                       itemCount: 4,
                       itemBuilder: (context, index) {
                         return TaskCard(
+                          callback: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ViewTaskDetails(task: provider.finished[index]),
+                              )),
+                          imagePath: provider.finished[index].photo,
                           date: provider.finished[index].date,
                           time: provider.finished[index].time,
                           name: provider.finished[index].repairname,
                           room: provider.finished[index].roomnumber,
+                          dorm: provider.finished[index].dormitoryX,
                         );
                       },
                     ),

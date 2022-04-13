@@ -4,6 +4,8 @@ import 'package:project_app/configs/global.dart';
 import 'package:project_app/providers/task_provider.dart';
 import 'package:provider/provider.dart';
 
+import 'view_task_details.dart';
+
 class ViewMore extends StatefulWidget {
   final String title;
   final String type;
@@ -25,10 +27,12 @@ class _ViewMoreState extends State<ViewMore> {
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal : 20.0 ),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           children: [
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Flexible(child: listRender(context, widget.type)),
           ],
         ),
@@ -43,10 +47,18 @@ class _ViewMoreState extends State<ViewMore> {
           itemCount: provider.reported.length,
           itemBuilder: (context, index) {
             return TaskCard(
+              callback: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ViewTaskDetails(task: provider.reported[index]),
+                  )),
+              imagePath: provider.reported[index].photo,
               date: provider.reported[index].date,
               time: provider.reported[index].time,
               name: provider.reported[index].repairname,
               room: provider.reported[index].roomnumber,
+              dorm: provider.reported[index].dormitoryX,
             );
           },
         );
@@ -55,10 +67,18 @@ class _ViewMoreState extends State<ViewMore> {
           itemCount: provider.confirmed.length,
           itemBuilder: (context, index) {
             return TaskCard(
+              callback: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ViewTaskDetails(task: provider.confirmed[index]),
+                  )),
+              imagePath: provider.confirmed[index].photo,
               date: provider.confirmed[index].date,
               time: provider.confirmed[index].time,
               name: provider.confirmed[index].repairname,
               room: provider.confirmed[index].roomnumber,
+              dorm: provider.confirmed[index].dormitoryX,
             );
           },
         );
@@ -67,10 +87,18 @@ class _ViewMoreState extends State<ViewMore> {
           itemCount: provider.finished.length,
           itemBuilder: (context, index) {
             return TaskCard(
+              callback: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ViewTaskDetails(task: provider.finished[index]),
+                  )),
+              imagePath: provider.finished[index].photo,
               date: provider.finished[index].date,
               time: provider.finished[index].time,
               name: provider.finished[index].repairname,
               room: provider.finished[index].roomnumber,
+              dorm: provider.finished[index].dormitoryX,
             );
           },
         );

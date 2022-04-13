@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+const String lineNotifyAccessToken = "elajyUlrLsdSqNrRbBLiVuBb04rvgV1m07faeuuXaHP";
 const primary_appbar_color = Color(0xFF262335);
 const primary_background_color = Color(0xFF503C52);
 const white_text = Color.fromARGB(255, 255, 255, 255);

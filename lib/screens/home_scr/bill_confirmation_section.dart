@@ -4,6 +4,7 @@ import 'package:project_app/components/task_card.dart';
 import 'package:project_app/configs/global.dart';
 import 'package:project_app/providers/task_provider.dart';
 import 'package:project_app/screens/home_scr/view_more.dart';
+import 'package:project_app/screens/home_scr/view_task_details.dart';
 import 'package:provider/provider.dart';
 
 class BillConfirmationSection extends StatefulWidget {
@@ -22,34 +23,37 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
     Size size = MediaQuery.of(context).size;
     return Consumer<TaskProvider>(builder: (context, provider, child) {
       return Container(
-        height: size.height * 0.4,
+        height: size.height * 0.45,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text('Confirm', style: sectionHeader),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      primary: Colors.orangeAccent[700],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30))),
-                  onPressed: widget.isLoad
-                      ? null
-                      : () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ViewMore(
-                                    title: "Confirmed", type: 'confirmed'),
-                              ));
-                        },
-                  child: Text('More'),
-                )
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical : 10.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text('Confirm', style: sectionHeader),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        primary: Colors.orangeAccent[700],
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30))),
+                    onPressed: widget.isLoad
+                        ? null
+                        : () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ViewMore(
+                                      title: "Confirmed", type: 'confirmed'),
+                                ));
+                          },
+                    child: Text('More'),
+                  )
+                ],
+              ),
             ),
             !widget.isLoad
                 ? Flexible(
@@ -58,10 +62,18 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
                       itemCount: 4,
                       itemBuilder: (context, index) {
                         return TaskCard(
+                          callback: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ViewTaskDetails(task: provider.confirmed[index]),
+                              )),
+                          imagePath: provider.confirmed[index].photo,
                           date: provider.confirmed[index].date,
                           time: provider.confirmed[index].time,
                           name: provider.confirmed[index].repairname,
                           room: provider.confirmed[index].roomnumber,
+                          dorm: provider.confirmed[index].dormitoryX,
+                          
                         );
                       },
                     ),

@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         ReportSection(isLoad: isLoad),
         BillConfirmationSection(isLoad: isLoad),
-        FinishedSection(isLoad: isLoad),
+        // FinishedSection(isLoad: isLoad),
       ],
     );
   }

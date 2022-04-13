@@ -46,6 +46,7 @@ dependencies:
   gsheets: ^0.3.2
   shared_preferences: ^2.0.13
   badges: ^2.0.2
+  intl: ^0.17.0
 
 flutter_icons:
   android: true

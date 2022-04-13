@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:project_app/providers/task_provider.dart';
 import 'package:project_app/screens/login_scr.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,10 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => TaskProvider()),
       ],
-      child: MaterialApp(home: LoginScreen()),
+      child: MaterialApp(
+        theme: ThemeData(textTheme: GoogleFonts.sarabunTextTheme()),
+        debugShowCheckedModeBanner: false,
+        home: LoginScreen()),
     );
   }
 }
