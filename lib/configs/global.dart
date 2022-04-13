@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-const String lineNotifyAccessToken = "elajyUlrLsdSqNrRbBLiVuBb04rvgV1m07faeuuXaHP";
+// elajyUlrLsdSqNrRbBLiVuBb04rvgV1m07faeuuXaHP default
+const String lineNotifyAccessToken =
+    "gSu8J77NzeSCx0X3OW00OQ0sKkaZln1oMtfqa2HheEX";
+const String spreadsheetId = '1oGZY06S02sWL-0rc_cN6YtCIEAwUV20j5yRWNzO_uNM';
 const primary_appbar_color = Color(0xFF262335);
 const primary_background_color = Color(0xFF503C52);
 const white_text = Color.fromARGB(255, 255, 255, 255);
@@ -26,4 +29,4 @@ const credentials = r'''
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/googlesheet%40pepairmenlogin.iam.gserviceaccount.com"
 }
 ''';
-const spreadsheetId = '1oGZY06S02sWL-0rc_cN6YtCIEAwUV20j5yRWNzO_uNM';
+

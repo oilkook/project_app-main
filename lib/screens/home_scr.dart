@@ -62,10 +62,11 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: primary_appbar_color,
         elevation: 0,
         title: Row(children: [
-          Badge(
-            badgeContent: Text('3', style: TextStyle(color: Colors.white)),
-            child: Icon(Icons.notifications),
-          ),
+          // Badge(
+          //   badgeContent: Text('3', style: TextStyle(color: Colors.white)),
+          //   child: Icon(Icons.notifications),
+          // ),
+          IconButton(onPressed: () {}, icon: Icon(Icons.history)),
           Spacer(),
           IconButton(
               onPressed: () {

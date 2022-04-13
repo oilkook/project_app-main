@@ -59,7 +59,7 @@ class _FinishedSectionState extends State<FinishedSection> {
                 ? Flexible(
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 4,
+                      itemCount: provider.finished.length < 4 ? provider.finished.length : 4,
                       itemBuilder: (context, index) {
                         return TaskCard(
                           callback: () => Navigator.push(

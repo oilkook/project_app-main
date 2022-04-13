@@ -34,23 +34,26 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
                   Expanded(
                     child: Text('Confirm', style: sectionHeader),
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        primary: Colors.orangeAccent[700],
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30))),
-                    onPressed: widget.isLoad
-                        ? null
-                        : () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ViewMore(
-                                      title: "Confirmed", type: 'confirmed'),
-                                ));
-                          },
-                    child: Text('More'),
+                  SizedBox(
+                    width: 125,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: Colors.orangeAccent[700],
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30))),
+                      onPressed: widget.isLoad
+                          ? null
+                          : () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ViewMore(
+                                        title: "Confirmed", type: 'confirmed'),
+                                  ));
+                            },
+                      child: Text('More' , style: TextStyle(fontSize: 16 , fontWeight: FontWeight.w600 , letterSpacing: 0.75),),
+                    ),
                   )
                 ],
               ),
@@ -59,7 +62,7 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
                 ? Flexible(
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 4,
+                      itemCount: provider.confirmed.length < 4 ? provider.confirmed.length : 4,
                       itemBuilder: (context, index) {
                         return TaskCard(
                           callback: () => Navigator.push(

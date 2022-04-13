@@ -1,12 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:project_app/actions/action_google_sheet.dart';
 import 'package:project_app/components/popup_loading.dart';
 import 'package:project_app/configs/global.dart';
 import 'package:project_app/models/repair_request.dart';
+import 'package:project_app/providers/task_provider.dart';
 import 'package:project_app/utils/line_notify.dart';
 import 'package:project_app/utils/utils.dart';
 import 'package:intl/intl.dart' as initl;
+import 'package:provider/provider.dart';
 
 class ViewTaskDetails extends StatelessWidget {
   final RepairRequest task;
@@ -115,15 +118,10 @@ class ViewTaskDetails extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
+                    Text('Item, List',style: boldText,),
                     Row(
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Item List", style: boldText),
-                            Text("- ${task.list} "),
-                          ],
-                        ),
+                        Expanded(child: Text("- ${task.list} ")),
                       ],
                     ),
                     SizedBox(
@@ -166,12 +164,22 @@ class ViewTaskDetails extends StatelessWidget {
                       ),
                       onPressed: task.msg == "0"
                           ? () async {
+                              final provider = Provider.of<TaskProvider>(
+                                  context,
+                                  listen: false);
                               Loading.showPopUp(context);
-                              LineNotify.send(message: 'APP TEST');
-                              await Future.delayed(Duration(seconds: 1));
 
-                              Navigator.pop(context);
-                              Navigator.pop(context);
+                              final res = await ActionGoogleSheet.editStatus(
+                                  id: task.id, status: "1");
+
+                              if (res) {
+                                LineNotify.send(
+                                    message:
+                                        "${task.dormitoryX} - ${task.roomnumber} repair request has been Confirm.");
+                                await provider.loadTask();
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              }
                             }
                           : null,
                       child: Text('Confirm',

@@ -37,23 +37,26 @@ class _ReportSectionState extends State<ReportSection> {
                   Expanded(
                     child: Text('Reports', style: sectionHeader),
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        primary: Colors.orangeAccent[700],
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30))),
-                    onPressed: widget.isLoad
-                        ? null
-                        : () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ViewMore(
-                                      title: "Reported", type: 'reported'),
-                                ));
-                          },
-                    child: Text('More'),
+                  SizedBox(
+                    width: 125,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: Colors.orangeAccent[700],
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30))),
+                      onPressed: widget.isLoad
+                          ? null
+                          : () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ViewMore(
+                                        title: "Reported", type: 'reported'),
+                                  ));
+                            },
+                      child: Text('More',style: TextStyle(fontSize: 16 , fontWeight: FontWeight.w600 , letterSpacing: 0.75)),
+                    ),
                   )
                 ],
               ),
@@ -62,7 +65,7 @@ class _ReportSectionState extends State<ReportSection> {
                 ? Flexible(
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 4,
+                      itemCount: provider.reported.length < 4 ? provider.reported.length : 4,
                       itemBuilder: (context, index) {
                         return TaskCard(
                           callback: () => Navigator.push(
