@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:project_app/components/task_card.dart';
 import 'package:project_app/configs/global.dart';
-import 'package:project_app/models/repair_request.dart';
 import 'package:project_app/providers/task_provider.dart';
 import 'package:project_app/screens/home_scr/view_more.dart';
 import 'package:project_app/screens/home_scr/view_task_details.dart';
@@ -35,7 +34,7 @@ class _ReportSectionState extends State<ReportSection> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Text('Reports', style: sectionHeader),
+                    child: Text('การแจ้งซ่อม', style: sectionHeader),
                   ),
                   SizedBox(
                     width: 125,
@@ -52,10 +51,10 @@ class _ReportSectionState extends State<ReportSection> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ViewMore(
-                                        title: "Reported", type: 'reported'),
+                                        title: "การแจ้งซ่อม", type: 'reported'),
                                   ));
                             },
-                      child: Text('More',style: TextStyle(fontSize: 16 , fontWeight: FontWeight.w600 , letterSpacing: 0.75)),
+                      child: Text('เพิ่มเติม',style: TextStyle(fontSize: 16 , fontWeight: FontWeight.w600 , letterSpacing: 0.75)),
                     ),
                   )
                 ],

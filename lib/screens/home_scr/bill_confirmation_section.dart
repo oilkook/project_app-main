@@ -32,7 +32,7 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Text('Confirm', style: sectionHeader),
+                    child: Text('ยืนยันการแจ้งซ่อมแล้ว', style: sectionHeader),
                   ),
                   SizedBox(
                     width: 125,
@@ -49,10 +49,10 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ViewMore(
-                                        title: "Confirmed", type: 'confirmed'),
+                                        title: "ยืนยันการแจ้งซ่อมแล้ว", type: 'confirmed'),
                                   ));
                             },
-                      child: Text('More' , style: TextStyle(fontSize: 16 , fontWeight: FontWeight.w600 , letterSpacing: 0.75),),
+                      child: Text('เพิ่มเติม' , style: TextStyle(fontSize: 16 , fontWeight: FontWeight.w600 , letterSpacing: 0.75),),
                     ),
                   )
                 ],

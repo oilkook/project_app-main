@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: primary_background_color,
+      backgroundColor: secondary_background_color,
       appBar: AppBar(
         backgroundColor: primary_appbar_color,
         elevation: 0,

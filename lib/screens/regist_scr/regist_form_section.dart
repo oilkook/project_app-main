@@ -37,10 +37,10 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                 children: [
                   TextFormField(
                     controller: emailController,
-                    decoration: getInputDecorated(label: 'Psu Email'),
+                    decoration: getInputDecorated(label: 'Psu E-mail'),
                     validator: (value) {
                       if (!Utils.isPsuMail(value)) {
-                        return 'is not a psu email';
+                        return 'อีเมล์ต้องเป็นโดเมน @phuket.psu.ac.th เท่านั้น';
                       }
                       return null;
                     },
@@ -49,13 +49,13 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                   TextFormField(
                     controller: passwordController,
                     obscureText: true,
-                    decoration: getInputDecorated(label: 'Password'),
+                    decoration: getInputDecorated(label: 'รหัสผ่าน'),
                     validator: (value) {
                       if (value.length < 6 && value.length != 0) {
-                        return 'password length must between 6 - 12';
+                        return 'รหัสผ่านต้องมีความยาว 6 - 12 ตัวอักษร';
                       }
                       if (value.length == 0) {
-                        return 'password must not empty';
+                        return 'โปรดระบุรหัสผ่าน';
                       }
                       return null;
                     },
@@ -66,14 +66,14 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                     obscureText: true,
                     validator: (value) {
                       if (value != passwordController.text.trim()) {
-                        return 'confirm password is mismatch';
+                        return 'รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบ';
                       }
                       if (value.length == 0) {
-                        return 'confirm password must not empty';
+                        return 'รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบ';
                       }
                       return null;
                     },
-                    decoration: getInputDecorated(label: 'Confirm Password'),
+                    decoration: getInputDecorated(label: 'ยืนยันรหัสผ่าน'),
                   ),
                 ],
               ),
@@ -103,7 +103,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                           }
                         }
                       },
-                      child: Text('Register'))),
+                      child: Text('ลงทะเบียน'))),
               Spacer(
                 flex: 1,
               ),
@@ -115,7 +115,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                       passwordController.clear();
                       confirmationPasswordContoller.clear();
                     },
-                    child: Text('Clear')),
+                    child: Text('ล้าง')),
               ),
               Spacer(
                 flex: 3,

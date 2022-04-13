@@ -51,7 +51,7 @@ class _FinishedSectionState extends State<FinishedSection> {
                                     title: "Finished", type: 'finished'),
                               ));
                         },
-                  child: Text('More'),
+                  child: Text('เพิ่มเติม'),
                 )
               ],
             ),

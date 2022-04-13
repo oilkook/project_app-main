@@ -22,11 +22,11 @@ class ViewTaskDetails extends StatelessWidget {
 
     TextStyle boldText = TextStyle(fontWeight: FontWeight.bold);
     return Scaffold(
-      backgroundColor: primary_background_color,
+      backgroundColor: secondary_background_color,
       appBar: AppBar(
           backgroundColor: primary_appbar_color,
           elevation: 0,
-          title: Text('Order #${task.id}')),
+          title: Text('คำขอหมายเลข #${task.id}')),
       body: Column(
         children: [
           SizedBox(
@@ -60,12 +60,13 @@ class ViewTaskDetails extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Order Details',
+                          'รายละเอียดคำขอ',
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -76,10 +77,11 @@ class ViewTaskDetails extends StatelessWidget {
                     Row(
                       children: [Expanded(child: Divider())],
                     ),
+                    Spacer(flex: 2,),
                     Row(
                       children: [
                         Text(
-                          "Ready To Service",
+                          "วัน/เวลา พร้อมรับบริการ",
                           style: boldText,
                         ),
                         Spacer(),
@@ -96,7 +98,7 @@ class ViewTaskDetails extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Dormitory",
+                              "หอพัก",
                               style: boldText,
                             ),
                             Text("- ${task.dormitoryX}"),
@@ -109,7 +111,7 @@ class ViewTaskDetails extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Room Number", style: boldText),
+                            Text("หมายเลขห้อง", style: boldText),
                             Text("- ${task.roomnumber}")
                           ],
                         )
@@ -118,7 +120,7 @@ class ViewTaskDetails extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Text('Item, List',style: boldText,),
+                    Text('รายการแจ้งซ่อม',style: boldText,),
                     Row(
                       children: [
                         Expanded(child: Text("- ${task.list} ")),
@@ -133,7 +135,7 @@ class ViewTaskDetails extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Details",
+                              "รายละเอียดเพิ่มเติม",
                               style: boldText,
                             ),
                             Text("- ${task.details} "),
@@ -141,6 +143,7 @@ class ViewTaskDetails extends StatelessWidget {
                         ),
                       ],
                     ),
+                    Spacer(flex: 4,),
                   ],
                 ),
               ),
@@ -182,7 +185,7 @@ class ViewTaskDetails extends StatelessWidget {
                               }
                             }
                           : null,
-                      child: Text('Confirm',
+                      child: Text('ยืนยันการเข้าซ่อม',
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,

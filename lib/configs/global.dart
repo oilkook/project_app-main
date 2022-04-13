@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 const String lineNotifyAccessToken =
     "gSu8J77NzeSCx0X3OW00OQ0sKkaZln1oMtfqa2HheEX";
 const String spreadsheetId = '1oGZY06S02sWL-0rc_cN6YtCIEAwUV20j5yRWNzO_uNM';
-const primary_appbar_color = Color(0xFF262335);
-const primary_background_color = Color(0xFF503C52);
+const primary_appbar_color = Color(0xFF22577E);
+const primary_background_color = Color(0xFFFAFFAF);
+const secondary_background_color = Color.fromARGB(255, 230, 230, 230);
 const white_text = Color.fromARGB(255, 255, 255, 255);
 const darken_text = Color(0xFF1f1f1f);
 const sectionHeader = TextStyle(
     fontSize: 18,
-    color: white_text,
+    color: darken_text,
     fontWeight: FontWeight.w600,
     letterSpacing: 0.65);
 

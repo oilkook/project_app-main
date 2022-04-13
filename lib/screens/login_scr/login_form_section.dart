@@ -39,7 +39,7 @@ class _FormSectionState extends State<FormSection> {
                     controller: emailController,
                     validator: (value) {
                       if (!Utils.isPsuMail(value.trim())) {
-                        return 'is not a psu email';
+                        return 'รูปแบบอีเมลล์ไม่ถูกต้อง';
                       }
                       return null;
                     },
@@ -50,11 +50,11 @@ class _FormSectionState extends State<FormSection> {
                     controller: passwordController,
                     validator: (value) {
                       if (value.length < 6) {
-                        return "password lenght must longer than 6 char";
+                        return "รหัสผ่านต้องมีความยาว 6 - 12 ตัวอักษร";
                       }
                       return null;
                     },
-                    decoration: getInputDecorated(label: 'Password'),
+                    decoration: getInputDecorated(label: 'รหัสผ่าน'),
                     obscureText: true,
                   ),
                 ],
@@ -83,7 +83,7 @@ class _FormSectionState extends State<FormSection> {
                                   )));
                         }
                       },
-                      child: Text('Sign In')),
+                      child: Text('ลงชื่อเข้าใช้')),
                 ),
                 Spacer(
                   flex: 1,
@@ -100,7 +100,7 @@ class _FormSectionState extends State<FormSection> {
                               builder: (context) => RegisterScreen(),
                             ));
                       },
-                      child: Text('Sign Up')),
+                      child: Text('ลงทะเบียน')),
                 ),
                 Spacer(
                   flex: 4,

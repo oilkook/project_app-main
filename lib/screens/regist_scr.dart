@@ -15,7 +15,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       backgroundColor: primary_background_color,
       appBar: AppBar(
-        title: Text('Register'),
+        backgroundColor: primary_appbar_color,
+        elevation: 0,
+        title: Text('ลงทะเบียนเข้าใช้งาน'),
       ),
       body: Column(
        

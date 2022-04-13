@@ -20,7 +20,7 @@ class _ViewMoreState extends State<ViewMore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primary_background_color,
+      backgroundColor: secondary_background_color,
       appBar: AppBar(
         backgroundColor: primary_appbar_color,
         title: Text(widget.title),
