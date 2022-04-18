@@ -5,6 +5,7 @@ import 'package:project_app/configs/global.dart';
 import 'package:project_app/providers/task_provider.dart';
 import 'package:project_app/screens/home_scr/view_more.dart';
 import 'package:project_app/screens/home_scr/view_task_details.dart';
+import 'package:project_app/screens/home_scr/view_task_details_completed.dart';
 import 'package:provider/provider.dart';
 
 class BillConfirmationSection extends StatefulWidget {
@@ -28,7 +29,7 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical : 10.0),
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: Row(
                 children: [
                   Expanded(
@@ -49,10 +50,17 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ViewMore(
-                                        title: "ยืนยันการแจ้งซ่อมแล้ว", type: 'confirmed'),
+                                        title: "ยืนยันการแจ้งซ่อมแล้ว",
+                                        type: 'confirmed'),
                                   ));
                             },
-                      child: Text('เพิ่มเติม' , style: TextStyle(fontSize: 16 , fontWeight: FontWeight.w600 , letterSpacing: 0.75),),
+                      child: Text(
+                        'เพิ่มเติม',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.75),
+                      ),
                     ),
                   )
                 ],
@@ -62,13 +70,16 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
                 ? Flexible(
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: provider.confirmed.length < 4 ? provider.confirmed.length : 4,
+                      itemCount: provider.confirmed.length < 4
+                          ? provider.confirmed.length
+                          : 4,
                       itemBuilder: (context, index) {
                         return TaskCard(
                           callback: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ViewTaskDetails(task: provider.confirmed[index]),
+                                builder: (context) => ViewTaskDetailsCompleted(
+                                    task: provider.confirmed[index]),
                               )),
                           imagePath: provider.confirmed[index].photo,
                           date: provider.confirmed[index].date,
@@ -76,7 +87,6 @@ class _BillConfirmationSectionState extends State<BillConfirmationSection> {
                           name: provider.confirmed[index].repairname,
                           room: provider.confirmed[index].roomnumber,
                           dorm: provider.confirmed[index].dormitoryX,
-                          
                         );
                       },
                     ),

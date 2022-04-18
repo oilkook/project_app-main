@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:project_app/configs/global.dart';
 import 'package:project_app/providers/task_provider.dart';
@@ -66,7 +65,11 @@ class _HomeScreenState extends State<HomeScreen> {
           //   badgeContent: Text('3', style: TextStyle(color: Colors.white)),
           //   child: Icon(Icons.notifications),
           // ),
-          IconButton(onPressed: () {}, icon: Icon(Icons.history)),
+          IconButton(
+              onPressed: () {
+                print('Noti');
+              },
+              icon: Icon(Icons.notifications)),
           Spacer(),
           IconButton(
               onPressed: () {

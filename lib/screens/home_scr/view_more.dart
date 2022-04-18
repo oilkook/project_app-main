@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_app/components/task_card.dart';
 import 'package:project_app/configs/global.dart';
 import 'package:project_app/providers/task_provider.dart';
+import 'package:project_app/screens/home_scr/view_task_details_completed.dart';
 import 'package:provider/provider.dart';
 
 import 'view_task_details.dart';
@@ -70,8 +71,8 @@ class _ViewMoreState extends State<ViewMore> {
               callback: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        ViewTaskDetails(task: provider.confirmed[index]),
+                    builder: (context) => ViewTaskDetailsCompleted(
+                        task: provider.confirmed[index]),
                   )),
               imagePath: provider.confirmed[index].photo,
               date: provider.confirmed[index].date,
@@ -90,8 +91,8 @@ class _ViewMoreState extends State<ViewMore> {
               callback: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        ViewTaskDetails(task: provider.finished[index]),
+                    builder: (context) => ViewTaskDetailsCompleted(
+                        task: provider.finished[index]),
                   )),
               imagePath: provider.finished[index].photo,
               date: provider.finished[index].date,

@@ -12,8 +12,15 @@ class TaskProvider extends ChangeNotifier {
     print('[TaskProvider] : Load Task');
     try {
       final List<RepairRequest> result = await Api.getOrderRequest();
-      this.reported = result.where((task) => task.msg == "0").toList();
+      this.reported =
+          result.where((task) => task.msg == "0" || task.msg == "").toList();
+      this.reported.sort(
+          (a, b) => DateTime.parse(b.date).compareTo(DateTime.parse(a.date)));
+
       this.confirmed = result.where((task) => task.msg == "1").toList();
+      this.confirmed.sort(
+          (a, b) => DateTime.parse(b.date).compareTo(DateTime.parse(a.date)));
+
       this.finished = result.where((task) => task.msg == "2").toList();
       notifyListeners();
       print('[TaskProvider] : Load Completed');

@@ -11,9 +11,9 @@ import 'package:project_app/utils/utils.dart';
 import 'package:intl/intl.dart' as initl;
 import 'package:provider/provider.dart';
 
-class ViewTaskDetails extends StatelessWidget {
+class ViewTaskDetailsCompleted extends StatelessWidget {
   final RepairRequest task;
-  const ViewTaskDetails({Key key, this.task}) : super(key: key);
+  const ViewTaskDetailsCompleted({Key key, this.task}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -172,7 +172,7 @@ class ViewTaskDetails extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         elevation: 0,
                       ),
-                      onPressed: task.msg == "0" || task.msg == ""
+                      onPressed: task.msg == "1"
                           ? () async {
                               final provider = Provider.of<TaskProvider>(
                                   context,
@@ -180,19 +180,19 @@ class ViewTaskDetails extends StatelessWidget {
                               Loading.showPopUp(context);
 
                               final res = await ActionGoogleSheet.editStatus(
-                                  id: task.id, status: "1");
+                                  id: task.id, status: "2");
 
                               if (res) {
                                 LineNotify.send(
                                     message:
-                                        "${task.dormitoryX} ห้อง ${task.roomnumber} คำขอการซ่อมถูกยืนยัน");
+                                        "${task.dormitoryX} ห้อง ${task.roomnumber} ดำเนินการเข้าซ่อมสำเร็จ");
                                 await provider.loadTask();
                                 Navigator.pop(context);
                                 Navigator.pop(context);
                               }
                             }
                           : null,
-                      child: Text('ยืนยันการเข้าซ่อม',
+                      child: Text('แจ้งการซ่อมเสร็จสิ้น',
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
