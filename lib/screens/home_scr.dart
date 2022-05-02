@@ -4,10 +4,13 @@ import 'package:project_app/providers/task_provider.dart';
 import 'package:project_app/screens/home_scr/bill_confirmation_section.dart';
 import 'package:project_app/screens/home_scr/finished_section.dart';
 import 'package:project_app/screens/home_scr/reports_section.dart';
+import 'package:project_app/screens/home_scr/view_more.dart';
 import 'package:project_app/screens/login_scr.dart';
 import 'package:project_app/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import 'home_scr/view_history.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -67,9 +70,14 @@ class _HomeScreenState extends State<HomeScreen> {
           // ),
           IconButton(
               onPressed: () {
-                print('Noti');
+                print('history_completed');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ViewHistory(),
+                    ));
               },
-              icon: Icon(Icons.notifications)),
+              icon: Icon(Icons.history)),
           Spacer(),
           IconButton(
               onPressed: () {

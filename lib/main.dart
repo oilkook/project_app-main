@@ -22,7 +22,8 @@ class App extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(textTheme: GoogleFonts.sarabunTextTheme()),
         debugShowCheckedModeBanner: false,
-        home: LoginScreen()),
+        home: LoginScreen(),
+      ),
     );
   }
 }

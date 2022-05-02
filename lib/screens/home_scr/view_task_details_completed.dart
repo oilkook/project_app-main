@@ -198,6 +198,46 @@ class ViewTaskDetailsCompleted extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               letterSpacing: 1.25))),
                 ),
+                // SizedBox(
+                //   width: size.width - 10,
+                //   height: 10,
+                // ),
+                // SizedBox(
+                //   width: size.width - 30,
+                //   height: 40,
+                //   child: ElevatedButton(
+                //       style: ElevatedButton.styleFrom(
+                //         primary: Color.fromARGB(255, 124, 10, 10),
+                //         shape: RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.circular(10)),
+                //         elevation: 0,
+                //       ),
+                //       onPressed: task.msg == "1"
+                //           ? () async {
+                //               final provider = Provider.of<TaskProvider>(
+                //                   context,
+                //                   listen: false);
+                //               Loading.showPopUp(context);
+
+                //               final res = await ActionGoogleSheet.editStatus(
+                //                   id: task.id, status: "3");
+
+                //               if (res) {
+                //                 LineNotify.send(
+                //                     message:
+                //                         "${task.dormitoryX} ห้อง ${task.roomnumber} คำขอการซ่อมถูกยกเลิก โปรดติดต่อช่างทางไลน์ เพื่อกรอกฟอร์มแจ้งซ่อมใหม่");
+                //                 await provider.loadTask();
+                //                 Navigator.pop(context);
+                //                 Navigator.pop(context);
+                //               }
+                //             }
+                //           : null,
+                //       child: Text('ยกเลิกการเข้าซ่อม',
+                //           style: TextStyle(
+                //               fontSize: 16,
+                //               fontWeight: FontWeight.w600,
+                //               letterSpacing: 1.25))),
+                // ),
               ],
             ),
           ),

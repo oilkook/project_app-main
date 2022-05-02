@@ -58,9 +58,10 @@ class ViewTaskDetails extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15)),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: ListView(
+                  shrinkWrap: true,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -159,12 +160,12 @@ class ViewTaskDetails extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 20),
             color: Colors.grey[50],
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: size.width - 40,
-                  height: 50,
+                  width: size.width - 30,
+                  height: 40,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.orangeAccent[700],
@@ -193,6 +194,46 @@ class ViewTaskDetails extends StatelessWidget {
                             }
                           : null,
                       child: Text('ยืนยันการเข้าซ่อม',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1.25))),
+                ),
+                SizedBox(
+                  width: size.width - 10,
+                  height: 10,
+                ),
+                SizedBox(
+                  width: size.width - 30,
+                  height: 40,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(255, 124, 10, 10),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        elevation: 0,
+                      ),
+                      onPressed: task.msg == "0" || task.msg == ""
+                          ? () async {
+                              final provider = Provider.of<TaskProvider>(
+                                  context,
+                                  listen: false);
+                              Loading.showPopUp(context);
+
+                              final res = await ActionGoogleSheet.editStatus(
+                                  id: task.id, status: "3");
+
+                              if (res) {
+                                LineNotify.send(
+                                    message:
+                                        "${task.dormitoryX} ห้อง ${task.roomnumber} คำขอการซ่อมถูกยกเลิก โปรดติดต่อช่างทางไลน์ เพื่อกรอกฟอร์มแจ้งซ่อมใหม่");
+                                await provider.loadTask();
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              }
+                            }
+                          : null,
+                      child: Text('ยกเลิกการเข้าซ่อม',
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,

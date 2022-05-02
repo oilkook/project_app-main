@@ -7,6 +7,8 @@ class TaskProvider extends ChangeNotifier {
   List<RepairRequest> reported = [];
   List<RepairRequest> confirmed = [];
   List<RepairRequest> finished = [];
+  List<RepairRequest> cancel = [];
+  List<RepairRequest> history = [];
 
   Future<bool> loadTask() async {
     print('[TaskProvider] : Load Task');
@@ -22,11 +24,16 @@ class TaskProvider extends ChangeNotifier {
           (a, b) => DateTime.parse(b.date).compareTo(DateTime.parse(a.date)));
 
       this.finished = result.where((task) => task.msg == "2").toList();
+      this.cancel = result.where((task) => task.msg == "3").toList();
+      this.history =
+          result.where((task) => task.msg == "3" || task.msg == "2").toList();
       notifyListeners();
       print('[TaskProvider] : Load Completed');
       print('[TaskProvider] : Reported = ${this.reported.length}');
       print('[TaskProvider] : Comfirmed = ${this.confirmed.length}');
       print('[TaskProvider] : Finish = ${this.finished.length}');
+      print('[TaskProvider] : Cancel = ${this.cancel.length}');
+      print('[TaskProvider] : History = ${this.history.length}');
 
       return true;
     } catch (err) {
